@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensaje Importante</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+            color: lime;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            animation: backgroundFade 5s infinite alternate;
+        }
+        @keyframes backgroundFade {
+            from { background-color: black; }
+            to { background-color: darkgreen; }
+        }
+        .carta {
+            max-width: 600px;
+            padding: 20px;
+            border: 2px solid lime;
+            background: black;
+            animation: glow 1s infinite alternate;
+        }
+        @keyframes glow {
+            from { box-shadow: 0 0 5px lime; }
+            to { box-shadow: 0 0 20px lime; }
+        }
+        #mensaje {
+            white-space: pre-line;
+            overflow: hidden;
+            border-right: 2px solid lime;
+            display: inline-block;
+            padding-right: 5px;
+            animation: blink 0.5s step-end infinite;
+        }
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+    </style>
+</head>
+<body>
+    <div class="carta">
+        <h2>Atención</h2>
+        <p id="mensaje"></p>
+    </div>
+    <script>
+        const texto = "Te he hackeado. Ahora tengo acceso a tu información. \nNo intentes escapar, solo sigue las instrucciones.";
+        let i = 0;
+        function escribirTexto() {
+            if (i < texto.length) {
+                document.getElementById("mensaje").textContent += texto.charAt(i);
+                i++;
+                setTimeout(escribirTexto, 50);
+            }
+        }
+        escribirTexto();
+    </script>
+</body>
+</html>
